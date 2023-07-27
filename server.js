@@ -1,7 +1,10 @@
 // import all packages
+const express = require('express');
+const fs = require('fs');
 // refer port
 
 // boiler plate info
+    // uses URL encoded
 // set route to db.json file
     // use GET /api/notes
 // route for index.html
@@ -9,8 +12,8 @@
 // route for notes.html 
     // use GET /notes
 // route for POST = when the user inputs information for new note
-    //POST /api/notes
+    // use POST /api/notes
 // OPTIONAL: route for delete (remove using the id property), rewrite to the 'db.json' file
-    //DELETE /api/nodes/:id
+    // use DELETE /api/nodes/:id
 
 // listen on port
