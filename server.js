@@ -15,7 +15,19 @@ app.use(express.json());
 app.use(express.static('public'));
 
 // set route to db.json file
-    // use GET /api/notes
+app.get('/api/notes', (req, res) => {
+    // read the db.json file
+    fs.readFile('./db/db.json', (err, data) => {
+        // throw error if there is one
+        if (err) throw err;
+        // parse the data
+        const notes = JSON.parse(data);
+        // send the parsed data back to the client
+        res.json(notes);
+    });
+});
+
+
 // route for index.html
     // use GET * 
 // route for notes.html 
