@@ -4,12 +4,16 @@ const fs = require('fs');
 const path = require('path');
 const app = express();
 
-// refer port
+// specify port
 const PORT = 3001;
 
+// set up express app to handle data parsing regardless of incoming data style/method
+app.use(express.urlencoded({ extended: true }));
+// change received data to JSON format for use
+app.use(express.json());
+// set up express app to handle static files and set root directory as the public folder
+app.use(express.static('public'));
 
-// boiler plate info
-    // uses URL encoded
 // set route to db.json file
     // use GET /api/notes
 // route for index.html
@@ -22,3 +26,6 @@ const PORT = 3001;
     // use DELETE /api/nodes/:id
 
 // listen on port
+app.listen(PORT, () => {
+    console.log(`http://localhost:${PORT} is now active and listening!`);
+});
