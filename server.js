@@ -1,7 +1,12 @@
 // import all packages
 const express = require('express');
 const fs = require('fs');
+const path = require('path');
+const app = express();
+
 // refer port
+const PORT = 3001;
+
 
 // boiler plate info
     // uses URL encoded
