@@ -34,7 +34,7 @@ app.get('/api/notes', (req, res) => {
 // route for GET = when the user clicks on the 'Get Started' button
 app.get('/notes', (req, res) => {
     // send the notes.html file to the client
-    res.sendFile(path.join(__dirname, './public/notes.html'));
+    res.sendFile(path.join(__dirname, "./public/notes.html"));
 });
 
 // route for POST = when the user inputs information for new note and clicks on the save button
@@ -49,7 +49,7 @@ app.post('/api/notes', (req, res) => {
         // parse the data
         const notesData = JSON.parse(data);
         // add the new note to the array
-        notesData.push(req.body);
+        notesData.push(originalNote);
         // stringify the data
         const stringifiedData = JSON.stringify(notesData);
         // write the data to the db.json file
