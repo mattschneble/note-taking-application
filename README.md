@@ -20,7 +20,7 @@ This is an application which functions as a note taker. You can create a new not
 | UUID | [https://www.npmjs.com/package/uuid](https://www.npmjs.com/package/uuid) |
 | Express | [https://www.npmjs.com/package/express](https://www.npmjs.com/package/express) |
 | Path | [https://www.npmjs.com/package/path](https://www.npmjs.com/package/path) |
-| FS | [https://www.npmjs.com/package/fs](https://www.npmjs.com/package/fs)
+| FS | [https://www.npmjs.com/package/fs](https://www.npmjs.com/package/fs) |
 
 ## Installation
 use "npm i" to install all required npm packages.
