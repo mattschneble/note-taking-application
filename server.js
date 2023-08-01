@@ -3,7 +3,7 @@ const express = require('express');
 const fs = require('fs');
 const path = require('path');
 const app = express();
-const id = require('./helpers.uuid');
+const { v4: uuid } = require('uuid');
 
 // specify port
 const PORT = 3001;
@@ -35,54 +35,29 @@ app.get('/api/notes', (req, res) => {
 app.get('/notes', (req, res) => {
     // send the notes.html file to the client
     res.sendFile(path.join(__dirname, "./public/notes.html"));
-});
+})
 
 // route for POST = when the user inputs information for new note and clicks on the save button
 app.post('/api/notes', (req, res) => {
-    // retrieve the new note from the request body
-    const originalNote = req.body;
+    // create a new note object
+    const note = req.body
+    // make sure the new note has an independent ID
+    note.id = uuid();
     // read the db.json file
     fs.readFile('./db/db.json', (err, data) => {
         // throw error if there is one
         if (err) throw err
         else {
         // parse the data
-        const notesData = JSON.parse(data);
-        // add the new note to the array
-        notesData.push(originalNote);
-        // stringify the data
-        const stringifiedData = JSON.stringify(notesData);
-        // write the data to the db.json file
-        fs.writeFile('./db/db.json', stringifiedData, (err) => {
+        const updatedNote = JSON.parse(data);
+        // push the new note into the notes array
+        updatedNote.push(note);
+        // rewrite the db.json file with the updated notes array
+        fs.writeFile('./db/db.json', JSON.stringify(updatedNote), (err) => {
             // throw error if there is one
             if (err) throw err
             else {
-            // send the parsed data back to the client
-            res.json(notesData);
-            }
-        })
-        }
-    })
-});
-
-//overwrite existing notes
-app.delete('/api/notes/:id', (req, res) => {
-    // read the db.json file
-    fs.readFile('./db/db.json', (err, data) => {
-        // throw error if there is one
-        if (err) throw err
-        else {
-        // parse the data
-        const notesData = JSON.parse(data);
-        // stringify the data
-        const stringifiedData = JSON.stringify(notesData);
-        // write the data to the db.json file
-        fs.writeFile('./db/db.json', stringifiedData, (err) => {
-            // throw error if there is one
-            if (err) throw err
-            else {
-            // send the parsed data back to the client
-            res.json(notesData);
+                res.json(updatedNote);
             }
         })
         }
