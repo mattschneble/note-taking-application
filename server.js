@@ -3,6 +3,7 @@ const express = require('express');
 const fs = require('fs');
 const path = require('path');
 const app = express();
+const id = require('./helpers.uuid');
 
 // specify port
 const PORT = 3001;
@@ -74,14 +75,14 @@ app.delete('/api/notes/:id', (req, res) => {
         // parse the data
         const notesData = JSON.parse(data);
         // stringify the data
-        const stringifiedData = JSON.stringify(filteredNotes);
+        const stringifiedData = JSON.stringify(notesData);
         // write the data to the db.json file
         fs.writeFile('./db/db.json', stringifiedData, (err) => {
             // throw error if there is one
             if (err) throw err
             else {
             // send the parsed data back to the client
-            res.json(filteredNotes);
+            res.json(notesData);
             }
         })
         }
