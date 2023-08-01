@@ -14,7 +14,6 @@ app.use(express.json());
 // set up express app to handle static files and set root directory as the public folder
 app.use(express.static('public'));
 
-// set route to index.html
 // route for GET = when the user clicks on the 'Get Started' button
 app.get('/api/notes', (req, res) => {
     // read the db.json file
@@ -28,7 +27,7 @@ app.get('/api/notes', (req, res) => {
         res.json(notes);
         }
     })
-});
+})
  
 // route for notes.html 
 // route for GET = when the user clicks on the 'Get Started' button
@@ -65,6 +64,29 @@ app.post('/api/notes', (req, res) => {
     })
 });
 
+//overwrite existing notes
+app.delete('/api/notes/:id', (req, res) => {
+    // read the db.json file
+    fs.readFile('./db/db.json', (err, data) => {
+        // throw error if there is one
+        if (err) throw err
+        else {
+        // parse the data
+        const notesData = JSON.parse(data);
+        // stringify the data
+        const stringifiedData = JSON.stringify(filteredNotes);
+        // write the data to the db.json file
+        fs.writeFile('./db/db.json', stringifiedData, (err) => {
+            // throw error if there is one
+            if (err) throw err
+            else {
+            // send the parsed data back to the client
+            res.json(filteredNotes);
+            }
+        })
+        }
+    })
+})
 
 // listen on port
 app.listen(PORT, () => {
