@@ -12,7 +12,7 @@
 * [Acknowledgement](#acknowledgement)
 
 ## Description
-This is an application which functions as a note taker. You can create a new note, save the note, and view saved notes.
+This is an application which functions as a note taker. You can create a new note, save the note, and view saved notes. Deployed website: (https://protected-savannah-08120-3a502de62ce0.herokuapp.com/)
 
 ## Technology
 | Technology Used        | Resource URL         |
