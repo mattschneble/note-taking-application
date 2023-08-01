@@ -70,6 +70,6 @@ app.get('*', (req, res) => {
     res.sendFile(path.join(__dirname, "./public/index.html"));
 })
 // listen on port
-app.listen(PORT, () => {
+app.listen(port, () => {
     console.log(`http://localhost:${port} is now active and listening!`);
 });
