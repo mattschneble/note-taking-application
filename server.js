@@ -6,7 +6,7 @@ const app = express();
 const { v4: uuid } = require('uuid');
 
 // specify port
-const PORT = 3001;
+const port = process.env.PORT || 3001;
 
 // set up express app to handle data parsing regardless of incoming data style/method
 app.use(express.urlencoded({ extended: true }));
@@ -71,5 +71,5 @@ app.get('*', (req, res) => {
 })
 // listen on port
 app.listen(PORT, () => {
-    console.log(`http://localhost:${PORT} is now active and listening!`);
+    console.log(`http://localhost:${port} is now active and listening!`);
 });
