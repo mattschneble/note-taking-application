@@ -15,12 +15,6 @@ app.use(express.json());
 // set up express app to handle static files and set root directory as the public folder
 app.use(express.static('public'));
 
-// create wildcard route
-app.get('*', (req, res) => {
-    // send the index.html file to the client
-    res.sendFile(path.join(__dirname, "./public/index.html"));
-})
-
 // route for GET = when the user clicks on the 'Get Started' button
 app.get('/api/notes', (req, res) => {
     // read the db.json file
@@ -70,6 +64,11 @@ app.post('/api/notes', (req, res) => {
     })
 })
 
+// create wildcard route
+app.get('*', (req, res) => {
+    // send the index.html file to the client
+    res.sendFile(path.join(__dirname, "./public/index.html"));
+})
 // listen on port
 app.listen(PORT, () => {
     console.log(`http://localhost:${PORT} is now active and listening!`);
